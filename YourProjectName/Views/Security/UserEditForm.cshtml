@@ -1,0 +1,187 @@
+﻿@model YourProjectName_ViewModels.SecurityUserViewModel
+@using YourProjectName_Resources
+
+@{
+    ViewBag.Title = @Resources.User;
+}
+
+@Styles.Render("~/Content/home")
+
+<script>
+    function btnUserAdd() {
+        var selectedOpts = $('#AvailablePlants option:selected');
+        if (selectedOpts.length == 0) {
+            alert("@Resources.NothingSelected.");
+        }
+
+        $('#UsersPlants').append($(selectedOpts).clone());
+        $(selectedOpts).remove();
+    }
+
+    function btnUserAddAll() {
+        var selectedOpts = $('#AvailablePlants option');
+        if (selectedOpts.length == 0) {
+            alert("@Resources.NothingSelected.");
+        }
+
+        $('#UsersPlants').append($(selectedOpts).clone());
+        $(selectedOpts).remove();
+    }
+
+    function btnUserRemove() {
+        var selectedOpts = $('#UsersPlants option:selected');
+        if (selectedOpts.length == 0) {
+            alert("@Resources.NothingSelected.");
+        }
+
+        $('#AvailablePlants').append($(selectedOpts).clone());
+        $(selectedOpts).remove();
+    }
+
+    function btnUserRemoveAll() {
+        var selectedOpts = $('#UsersPlants option');
+        if (selectedOpts.length == 0) {
+            alert("@Resources.NothingSelected.");
+        }
+
+        $('#AvailablePlants').append($(selectedOpts).clone());
+        $(selectedOpts).remove();
+    }
+
+    function SaveSelectedItems() {
+        var IDs = '';
+
+        $('#UsersPlants option').each(function () {
+            IDs += ',' + $(this).val();
+        });
+        $('#UsersPlantsIDs').val(IDs);
+    }
+</script>
+
+<div class="metso-home">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="page-header">
+                <h1>
+                    @ViewBag.Title
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true)
+
+                        @Html.HiddenFor(model => model.iduser)
+                        @Html.HiddenFor(model => model.plant_id)
+                        <input type="hidden" value="x" id="UsersPlantsIDs" name="UsersPlantsIDs" />
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.user_name, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.user_name, new { htmlAttributes = new { @class = "form-control", style = "width: 300px" } })
+                                @Html.ValidationMessageFor(model => model.user_name)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.user_email, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.user_email, new { htmlAttributes = new { @class = "form-control", style = "width: 500px" } })
+                                @Html.ValidationMessageFor(model => model.user_email)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idarea, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.idarea, (List<SelectListItem>)ViewBag.UserAreas, new { @class = "form-control", style = "width: 300px" })
+                                @Html.ValidationMessageFor(model => model.idarea)
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>@Resources.MultiplePlants</h4>
+                                    <hr />
+                                    <div class="col-md-offset-1">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <span style="font-weight:bold">@Resources.AvailablePlants:</span>
+                                                    <br />
+                                                    @Html.ListBox("AvailablePlants", ViewData["AvailablePlants"] as List<SelectListItem>, new { @class = "form-control", size = 10, style = "width: 100%;background-color:#f2f2f2;" })
+                                                </td>
+                                                <td>&nbsp;</td>
+                                                <td>
+                                                    <table cellspacing="10">
+                                                        <tr>
+                                                            <td>
+                                                                <button type="button" class="btn btn-primary btn-sm btn-round" onclick="javascript: btnUserAdd();" style="width:100%"><i class="fas fa-angle-right"></i> @Resources.Add</button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height:4px">
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <button type="button" class="btn btn-primary btn-sm btn-round" onclick="javascript: btnUserAddAll();" style="width:100%"><i class="fas fa-angle-double-right"></i> @Resources.AddAll</button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height:4px">
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <button type="button" class="btn btn-primary btn-sm btn-round" onclick="javascript: btnUserRemove();" style="width:100%"><i class="fas fa-angle-left"></i> @Resources.Remove</button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="height:4px">
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <button type="button" class="btn btn-primary btn-sm btn-round" onclick="javascript: btnUserRemoveAll();" style="width:100%"><i class="fas fa-angle-double-left"></i> @Resources.RemoveAll</button>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td>&nbsp;</td>
+                                                <td>
+                                                    <span style="font-weight:bold">@Resources.UserSelectedPlants:</span>
+                                                    <br />
+                                                    @Html.ListBox("UsersPlants", ViewData["UsersPlants"] as List<SelectListItem>, new { @class = "form-control", size = 10, style = "width: 100%;background-color:#d6e5fc;" })
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br /><br />
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn btn-success btn-sm btn-round" onclick="javascript: SaveSelectedItems();"><i class="fas fa-check"></i> @Resources.Save</button>
+                                <button type="button" class="btn btn-danger btn-sm btn-round" onclick="javascript: document.location = '@Url.Action("UserIndex", "Security")';"><i class="fas fa-ban"></i> @Resources.Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }
+                <br /><br />
+            </div>
+        </div>
+    </div>
+</div>

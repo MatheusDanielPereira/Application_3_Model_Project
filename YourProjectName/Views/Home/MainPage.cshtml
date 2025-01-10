@@ -1,0 +1,218 @@
+﻿@using YourProjectName_Resources;
+
+@{
+    ViewBag.Title = @Resources.YourProjectName;
+}
+
+@Scripts.Render("~/bundles/MetsoJs")
+@Scripts.Render("~/bundles/MetsoChart")
+@Styles.Render("~/Content/MetsoCss")
+@Styles.Render("~/Content/Home")
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metso</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link para o arquivo CSS -->
+</head>
+<body>
+
+    <!-- Barra de navegação -->
+    <div class="navbar">
+        <a href="#">About us</a>
+        <a href="#">Careers</a>
+        <a href="#">Investors</a>
+        <a href="#">Sustainability</a>
+        <a href="#">Digitalization</a>
+        <a href="#">Newsroom</a>
+        <a href="#">Locations</a>
+        <a href="#">Contact Sales</a>
+    </div>
+
+    <!-- Banner principal -->
+    <div class="banner">
+        <h1>Working together towards decarbonization</h1>
+        <button>READ MORE</button>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="content">
+        <!-- Aqui você pode adicionar mais seções de conteúdo conforme necessário -->
+    </div>
+
+    <!-- Rodapé -->
+    <div class="footer">
+        <p>&copy; 2024 Metso. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
+
+<style>
+    /* Estilos para a barra de navegação */
+    .navbar {
+        background-color: rgba(0, 0, 0, 0.7); /* Cor de fundo semi-transparente */
+        padding: 10px 20px; /* Espaçamento interno */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+        .navbar a {
+            color: white; /* Cor do texto */
+            text-decoration: none; /* Remover sublinhado */
+            margin-right: 20px; /* Espaçamento entre os itens de menu */
+        }
+
+            .navbar a:hover {
+                color: #FF5733; /* Cor do texto ao passar o mouse */
+            }
+
+    /* Estilos para o banner principal */
+    .banner {
+        background-image: url('background.jpg'); /* Imagem de fundo */
+        background-size: cover;
+        background-position: center;
+        height: 500px; /* Altura do banner */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+        .banner h1 {
+            font-size: 3em; /* Tamanho da fonte */
+            color: white; /* Cor do texto */
+        }
+
+        .banner button {
+            background-color: #FF5733; /* Cor de fundo do botão */
+            color: white; /* Cor do texto do botão */
+            border: none; /* Remover borda */
+            padding: 10px 20px; /* Espaçamento interno */
+            font-size: 1.2em; /* Tamanho da fonte */
+            cursor: pointer; /* Cursor ao passar o mouse */
+            transition: background-color 0.3s ease; /* Transição suave de cor */
+        }
+
+            .banner button:hover {
+                background-color: #E94E28; /* Cor de fundo do botão ao passar o mouse */
+            }
+
+    /* Estilos para o conteúdo */
+    .content {
+        padding: 50px;
+    }
+
+    /* Estilos para o rodapé */
+    .footer {
+        background-color: #333; /* Cor de fundo do rodapé */
+        color: white; /* Cor do texto do rodapé */
+        padding: 20px;
+        text-align: center;
+    }
+
+</style>
+
+<script>
+    var cvType1 = document.getElementById("cvType1");
+    var cvType2 = document.getElementById("cvType2");
+    var cvType3 = document.getElementById("cvType3");
+    var cvType4 = document.getElementById("cvType4");
+
+    var chType1 = new Chart(cvType1, {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(Json.Encode(((IEnumerable<string>)ViewBag.Type1ChartLabels))),
+            datasets: [{
+                label: '@Resources.ChartLabelDescription',
+                data: @Html.Raw(Json.Encode(((IEnumerable<double>)ViewBag.Type1ChartValues))),
+                backgroundColor: @Html.Raw(Json.Encode(((IEnumerable<string>)ViewBag.Type1ChartColors))),
+                borderColor: @Html.Raw(Json.Encode(((IEnumerable<string>)ViewBag.Type1ChartColors))),
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
+
+    var chType2 = new Chart(cvType2, {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(Json.Encode(((IEnumerable<string>)ViewBag.Type2ChartLabels))),
+            datasets: [{
+                label: '@Resources.ChartLabelDescription',
+                data: @Html.Raw(Json.Encode(((IEnumerable<double>)ViewBag.Type2ChartValues))),
+                backgroundColor: @Html.Raw(Json.Encode(((IEnumerable<string>)ViewBag.Type2ChartColors))),
+                borderColor: @Html.Raw(Json.Encode(((IEnumerable<string>)ViewBag.Type2ChartColors))),
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
+
+    var chType3 = new Chart(cvType3, {
+        type: 'line',
+        legend: false,
+        data: {
+            labels: @Html.Raw(Json.Encode(((IEnumerable<string>)ViewBag.Type3ChartLabels))),
+            datasets: [{
+                label: '@Resources.ChartLabelDescription',
+                data: @Html.Raw(Json.Encode(((IEnumerable<double>)ViewBag.Type3ChartValues))),
+                backgroundColor: @Html.Raw(Json.Encode(((IEnumerable<string>)ViewBag.Type3ChartColors))),
+                borderColor: @Html.Raw(Json.Encode(((IEnumerable<string>)ViewBag.Type3ChartColors))),
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
+
+    var chType4 = new Chart(cvType4, {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: @Html.Raw(Json.Encode(((IEnumerable<double>)ViewBag.Type4ChartValues))),
+                backgroundColor: @Html.Raw(Json.Encode(((IEnumerable<string>)ViewBag.Type4ChartColors)))
+                }],
+            labels: @Html.Raw(Json.Encode(((IEnumerable<string>)ViewBag.Type4ChartLabels))),
+        }
+    });
+
+</script>

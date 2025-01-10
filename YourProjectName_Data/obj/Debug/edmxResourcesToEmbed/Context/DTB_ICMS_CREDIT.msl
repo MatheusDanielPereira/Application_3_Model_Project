@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DTB_ICMS_CREDIT_DEVModelStoreContainer" CdmEntityContainer="DTB_ICMS_CREDIT_DEVEntities">
+    <EntitySetMapping Name="parameter">
+      <EntityTypeMapping TypeName="DTB_ICMS_CREDIT_DEVModel.parameter">
+        <MappingFragment StoreEntitySet="parameter">
+          <ScalarProperty Name="idparameter" ColumnName="idparameter" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="plant">
+      <EntityTypeMapping TypeName="DTB_ICMS_CREDIT_DEVModel.plant">
+        <MappingFragment StoreEntitySet="plant">
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+          <ScalarProperty Name="plant_description" ColumnName="plant_description" />
+          <ScalarProperty Name="plant_time_zone" ColumnName="plant_time_zone" />
+          <ScalarProperty Name="plant_flag" ColumnName="plant_flag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="security_area">
+      <EntityTypeMapping TypeName="DTB_ICMS_CREDIT_DEVModel.security_area">
+        <MappingFragment StoreEntitySet="security_area">
+          <ScalarProperty Name="idarea" ColumnName="idarea" />
+          <ScalarProperty Name="area_name" ColumnName="area_name" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="security_role">
+      <EntityTypeMapping TypeName="DTB_ICMS_CREDIT_DEVModel.security_role">
+        <MappingFragment StoreEntitySet="security_role">
+          <ScalarProperty Name="idrole" ColumnName="idrole" />
+          <ScalarProperty Name="role_description" ColumnName="role_description" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="security_task">
+      <EntityTypeMapping TypeName="DTB_ICMS_CREDIT_DEVModel.security_task">
+        <MappingFragment StoreEntitySet="security_task">
+          <ScalarProperty Name="idtask" ColumnName="idtask" />
+          <ScalarProperty Name="task_description" ColumnName="task_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="security_user">
+      <EntityTypeMapping TypeName="DTB_ICMS_CREDIT_DEVModel.security_user">
+        <MappingFragment StoreEntitySet="security_user">
+          <ScalarProperty Name="iduser" ColumnName="iduser" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="idarea" ColumnName="idarea" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="security_role_task" TypeName="DTB_ICMS_CREDIT_DEVModel.security_role_task" StoreEntitySet="security_role_task">
+      <EndProperty Name="security_role">
+        <ScalarProperty Name="idrole" ColumnName="idrole" />
+      </EndProperty>
+      <EndProperty Name="security_task">
+        <ScalarProperty Name="idtask" ColumnName="idtask" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="security_user_plants" TypeName="DTB_ICMS_CREDIT_DEVModel.security_user_plants" StoreEntitySet="security_user_plants">
+      <EndProperty Name="plant">
+        <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+      </EndProperty>
+      <EndProperty Name="security_user">
+        <ScalarProperty Name="iduser" ColumnName="iduser" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="security_user_role" TypeName="DTB_ICMS_CREDIT_DEVModel.security_user_role" StoreEntitySet="security_user_role">
+      <EndProperty Name="security_role">
+        <ScalarProperty Name="idrole" ColumnName="idrole" />
+      </EndProperty>
+      <EndProperty Name="security_user">
+        <ScalarProperty Name="iduser" ColumnName="iduser" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="vw_example">
+      <EntityTypeMapping TypeName="DTB_ICMS_CREDIT_DEVModel.vw_example">
+        <MappingFragment StoreEntitySet="vw_example">
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+          <ScalarProperty Name="idarea" ColumnName="idarea" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="iduser" ColumnName="iduser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_User_Delete" FunctionName="DTB_ICMS_CREDIT_DEVModel.Store.sp_User_Delete" />
+  </EntityContainerMapping>
+</Mapping>

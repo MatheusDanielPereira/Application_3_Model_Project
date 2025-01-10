@@ -1,0 +1,44 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@using YourProjectName_Resources;
+
+@{
+    ViewBag.Title = @Resources.Error;
+}
+
+@Styles.Render("~/Content/home")
+
+<div class="metso-home">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="page-header">
+                <br />
+                <h1>
+                    @ViewBag.Title
+                </h1>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bs-callout bs-callout-danger">
+                    <h4><i class="fas fa-exclamation-triangle"></i> @ViewBag.Title</h4>
+                    @{
+                        string ErrorMessage = Model.Exception.Message;
+
+                        Exception Inner = Model.Exception.InnerException;
+
+                        while (Inner != null)
+                        {
+                            ErrorMessage += "<br />" + Inner.Message;
+                            Inner = Inner.InnerException;
+                        }
+                    }
+                    @Html.Raw(ErrorMessage)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1022
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourProjectName", "YourProjectName\YourProjectName.csproj", "{F742EF55-F138-4186-983E-9D4AC5C48DB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourProjectName_Application", "YourProjectName_Application\YourProjectName_Application.csproj", "{3F9F72CA-C60E-442C-8CC2-C82883A117CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourProjectName_AutoMapper", "YourProjectName_AutoMapper\YourProjectName_AutoMapper.csproj", "{B11F34FA-98A4-49EB-A54C-E0FA05D63713}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourProjectName_Data", "YourProjectName_Data\YourProjectName_Data.csproj", "{98B8A29F-327D-46AD-B71D-4AA02ED336BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourProjectName_Domain", "YourProjectName_Domain\YourProjectName_Domain.csproj", "{22F34E31-5EB5-4765-9B18-631DF8472946}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourProjectName_Resources", "YourProjectName_Resources\YourProjectName_Resources.csproj", "{2A816A27-D92B-4EF3-8783-D5EB8D277CCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YourProjectName_ViewModels", "YourProjectName_ViewModels\YourProjectName_ViewModels.csproj", "{2E5AECC6-4A16-4B92-9569-44624207DF05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F742EF55-F138-4186-983E-9D4AC5C48DB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F742EF55-F138-4186-983E-9D4AC5C48DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F742EF55-F138-4186-983E-9D4AC5C48DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F742EF55-F138-4186-983E-9D4AC5C48DB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F9F72CA-C60E-442C-8CC2-C82883A117CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F9F72CA-C60E-442C-8CC2-C82883A117CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F9F72CA-C60E-442C-8CC2-C82883A117CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F9F72CA-C60E-442C-8CC2-C82883A117CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B11F34FA-98A4-49EB-A54C-E0FA05D63713}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B11F34FA-98A4-49EB-A54C-E0FA05D63713}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B11F34FA-98A4-49EB-A54C-E0FA05D63713}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B11F34FA-98A4-49EB-A54C-E0FA05D63713}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98B8A29F-327D-46AD-B71D-4AA02ED336BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98B8A29F-327D-46AD-B71D-4AA02ED336BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98B8A29F-327D-46AD-B71D-4AA02ED336BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98B8A29F-327D-46AD-B71D-4AA02ED336BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22F34E31-5EB5-4765-9B18-631DF8472946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22F34E31-5EB5-4765-9B18-631DF8472946}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22F34E31-5EB5-4765-9B18-631DF8472946}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22F34E31-5EB5-4765-9B18-631DF8472946}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A816A27-D92B-4EF3-8783-D5EB8D277CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A816A27-D92B-4EF3-8783-D5EB8D277CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A816A27-D92B-4EF3-8783-D5EB8D277CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A816A27-D92B-4EF3-8783-D5EB8D277CCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E5AECC6-4A16-4B92-9569-44624207DF05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E5AECC6-4A16-4B92-9569-44624207DF05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E5AECC6-4A16-4B92-9569-44624207DF05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E5AECC6-4A16-4B92-9569-44624207DF05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {477D9054-52E6-4D10-B554-BBDC060CC616}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://metsobrasil.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = YourProjectName\\YourProjectName.csproj
+		SccProjectName1 = YourProjectName
+		SccLocalPath1 = YourProjectName
+		SccProjectUniqueName2 = YourProjectName_Application\\YourProjectName_Application.csproj
+		SccProjectName2 = YourProjectName_Application
+		SccLocalPath2 = YourProjectName_Application
+		SccProjectUniqueName3 = YourProjectName_AutoMapper\\YourProjectName_AutoMapper.csproj
+		SccProjectName3 = YourProjectName_AutoMapper
+		SccLocalPath3 = YourProjectName_AutoMapper
+		SccProjectUniqueName4 = YourProjectName_Data\\YourProjectName_Data.csproj
+		SccProjectName4 = YourProjectName_Data
+		SccLocalPath4 = YourProjectName_Data
+		SccProjectUniqueName5 = YourProjectName_Domain\\YourProjectName_Domain.csproj
+		SccProjectName5 = YourProjectName_Domain
+		SccLocalPath5 = YourProjectName_Domain
+		SccProjectUniqueName6 = YourProjectName_Resources\\YourProjectName_Resources.csproj
+		SccProjectName6 = YourProjectName_Resources
+		SccLocalPath6 = YourProjectName_Resources
+		SccProjectUniqueName7 = YourProjectName_ViewModels\\YourProjectName_ViewModels.csproj
+		SccProjectName7 = YourProjectName_ViewModels
+		SccLocalPath7 = YourProjectName_ViewModels
+	EndGlobalSection
+EndGlobal

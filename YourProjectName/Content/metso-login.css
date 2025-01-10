@@ -1,0 +1,122 @@
+﻿.metso-login {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.metso-login-form {
+    position: relative;
+    width: 100%;
+    height: 100% !important;
+    background-color: #4b494c;
+    background-image: url(Images/LoginBackground.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+    .metso-login-form .col-md-6 {
+        padding: 0 20px;
+    }
+
+        .metso-login-form .col-md-6 h3 {
+            font-size: 22px;
+            margin: 0;
+            padding: 0 0 0 0;
+            text-align: center;
+            font-weight: normal;
+            text-shadow: 0 2px #000000;
+            text-shadow: 0 2px rgba(0, 0, 0, 0.6);
+        }
+
+    .metso-login-form form {
+        position: relative;
+        max-width: 420px;
+        background: rgba(0,0,0,0.2);
+        color: #ffffff;
+        padding: 35px;
+        box-sizing: border-box;
+        margin: 200px auto;
+    }
+
+        .metso-login-form form .input-group {
+            padding: 10px 0;
+        }
+
+            .metso-login-form form .input-group span {
+                background: #4b494c;
+                background-image: linear-gradient(to right, #4b494c, #232325);
+                border: none;
+                border-radius: 0;
+                color: #FFF;
+                font-size: 22px;
+                text-align: center;
+                padding-top: 5px;
+            }
+
+                .metso-login-form form .input-group span i {
+                    width: 45px;
+                }
+
+            .metso-login-form form .input-group input {
+                border: 1px #ffffff solid;
+                border-radius: 0;
+                height: 45px;
+                font-size: 16px;
+            }
+
+                .metso-login-form form .input-group input:focus {
+                    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+                }
+
+        .metso-login-form form button {
+            width: 100%;
+            height: 45px;
+            background-image: linear-gradient(#4b494c, #3a3a3e);
+            border: none;
+            border-radius: 0;
+            color: #ffffff;
+            margin: 10px 0 0 0;
+            box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.2);
+            line-height: 20px;
+        }
+
+            .metso-login-form form button:hover {
+                width: 100%;
+                height: 45px;
+                background-image: linear-gradient(#454346, #2f2f33);
+                box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.2);
+                color: #ffffff;
+            }
+
+            .metso-login-form form button:active {
+                background: #232325 !important;
+                color: #ffffff !important;
+                line-height: 36px;
+                box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
+            }
+
+            .metso-login-form form button:focus {
+                outline: none !important;
+                border: none !important;
+                color: #ffffff !important;
+            }
+
+        .metso-login-form form p {
+            display: inline-block;
+            padding: 10px 0 0 0;
+        }
+
+            .metso-login-form form p.text-right {
+                float: right;
+            }
+
+        .metso-login-form form a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+.loginTitle {
+    text-shadow: 0 2px rgba(0, 0, 0, .6);
+    text-align: center;
+}        

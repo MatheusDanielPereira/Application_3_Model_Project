@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DTB_ICMS_CREDIT_DEVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="parameter">
+    <Key>
+      <PropertyRef Name="idparameter" />
+    </Key>
+    <Property Name="idparameter" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="value" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="plant_id" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="plant">
+    <Key>
+      <PropertyRef Name="plant_id" />
+    </Key>
+    <Property Name="plant_id" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="plant_description" Type="nvarchar" MaxLength="150" />
+    <Property Name="plant_time_zone" Type="nvarchar" MaxLength="100" />
+    <Property Name="plant_flag" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="security_area">
+    <Key>
+      <PropertyRef Name="idarea" />
+    </Key>
+    <Property Name="idarea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="area_name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="plant_id" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="security_role">
+    <Key>
+      <PropertyRef Name="idrole" />
+    </Key>
+    <Property Name="idrole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="role_description" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="plant_id" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="security_role_task">
+    <Key>
+      <PropertyRef Name="idrole" />
+      <PropertyRef Name="idtask" />
+    </Key>
+    <Property Name="idrole" Type="int" Nullable="false" />
+    <Property Name="idtask" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="security_task">
+    <Key>
+      <PropertyRef Name="idtask" />
+    </Key>
+    <Property Name="idtask" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="task_description" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="security_user">
+    <Key>
+      <PropertyRef Name="iduser" />
+    </Key>
+    <Property Name="iduser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="user_email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="idarea" Type="int" Nullable="false" />
+    <Property Name="plant_id" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="security_user_plants">
+    <Key>
+      <PropertyRef Name="iduser" />
+      <PropertyRef Name="plant_id" />
+    </Key>
+    <Property Name="iduser" Type="int" Nullable="false" />
+    <Property Name="plant_id" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="security_user_role">
+    <Key>
+      <PropertyRef Name="iduser" />
+      <PropertyRef Name="idrole" />
+    </Key>
+    <Property Name="iduser" Type="int" Nullable="false" />
+    <Property Name="idrole" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DTB_ICMS_CREDIT_DEV.dbo.vw_example' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_example">
+    <Key>
+      <PropertyRef Name="iduser" />
+      <PropertyRef Name="user_name" />
+      <PropertyRef Name="user_email" />
+      <PropertyRef Name="idarea" />
+      <PropertyRef Name="plant_id" />
+    </Key>
+    <Property Name="iduser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="user_email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="idarea" Type="int" Nullable="false" />
+    <Property Name="plant_id" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_parameter_plant">
+    <End Role="plant" Type="Self.plant" Multiplicity="1" />
+    <End Role="parameter" Type="Self.parameter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="plant">
+        <PropertyRef Name="plant_id" />
+      </Principal>
+      <Dependent Role="parameter">
+        <PropertyRef Name="plant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_roletask_role">
+    <End Role="security_role" Type="Self.security_role" Multiplicity="1" />
+    <End Role="security_role_task" Type="Self.security_role_task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="security_role">
+        <PropertyRef Name="idrole" />
+      </Principal>
+      <Dependent Role="security_role_task">
+        <PropertyRef Name="idrole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_roletask_task">
+    <End Role="security_task" Type="Self.security_task" Multiplicity="1" />
+    <End Role="security_role_task" Type="Self.security_role_task" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="security_task">
+        <PropertyRef Name="idtask" />
+      </Principal>
+      <Dependent Role="security_role_task">
+        <PropertyRef Name="idtask" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_securityarea_plant">
+    <End Role="plant" Type="Self.plant" Multiplicity="1" />
+    <End Role="security_area" Type="Self.security_area" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="plant">
+        <PropertyRef Name="plant_id" />
+      </Principal>
+      <Dependent Role="security_area">
+        <PropertyRef Name="plant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_securityrole_plant">
+    <End Role="plant" Type="Self.plant" Multiplicity="1" />
+    <End Role="security_role" Type="Self.security_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="plant">
+        <PropertyRef Name="plant_id" />
+      </Principal>
+      <Dependent Role="security_role">
+        <PropertyRef Name="plant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_securityuser_plant">
+    <End Role="plant" Type="Self.plant" Multiplicity="1" />
+    <End Role="security_user" Type="Self.security_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="plant">
+        <PropertyRef Name="plant_id" />
+      </Principal>
+      <Dependent Role="security_user">
+        <PropertyRef Name="plant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_area">
+    <End Role="security_area" Type="Self.security_area" Multiplicity="1" />
+    <End Role="security_user" Type="Self.security_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="security_area">
+        <PropertyRef Name="idarea" />
+      </Principal>
+      <Dependent Role="security_user">
+        <PropertyRef Name="idarea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userplants_plant">
+    <End Role="plant" Type="Self.plant" Multiplicity="1" />
+    <End Role="security_user_plants" Type="Self.security_user_plants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="plant">
+        <PropertyRef Name="plant_id" />
+      </Principal>
+      <Dependent Role="security_user_plants">
+        <PropertyRef Name="plant_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userplants_user">
+    <End Role="security_user" Type="Self.security_user" Multiplicity="1" />
+    <End Role="security_user_plants" Type="Self.security_user_plants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="security_user">
+        <PropertyRef Name="iduser" />
+      </Principal>
+      <Dependent Role="security_user_plants">
+        <PropertyRef Name="iduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userrole_role">
+    <End Role="security_role" Type="Self.security_role" Multiplicity="1" />
+    <End Role="security_user_role" Type="Self.security_user_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="security_role">
+        <PropertyRef Name="idrole" />
+      </Principal>
+      <Dependent Role="security_user_role">
+        <PropertyRef Name="idrole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userrole_user">
+    <End Role="security_user" Type="Self.security_user" Multiplicity="1" />
+    <End Role="security_user_role" Type="Self.security_user_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="security_user">
+        <PropertyRef Name="iduser" />
+      </Principal>
+      <Dependent Role="security_user_role">
+        <PropertyRef Name="iduser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_User_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="iduser" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="DTB_ICMS_CREDIT_DEVModelStoreContainer">
+    <EntitySet Name="parameter" EntityType="Self.parameter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="plant" EntityType="Self.plant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="security_area" EntityType="Self.security_area" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="security_role" EntityType="Self.security_role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="security_role_task" EntityType="Self.security_role_task" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="security_task" EntityType="Self.security_task" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="security_user" EntityType="Self.security_user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="security_user_plants" EntityType="Self.security_user_plants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="security_user_role" EntityType="Self.security_user_role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_example" EntityType="Self.vw_example" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_example].[iduser] AS [iduser], 
+    [vw_example].[user_name] AS [user_name], 
+    [vw_example].[user_email] AS [user_email], 
+    [vw_example].[idarea] AS [idarea], 
+    [vw_example].[plant_id] AS [plant_id]
+    FROM [dbo].[vw_example] AS [vw_example]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_parameter_plant" Association="Self.FK_parameter_plant">
+      <End Role="plant" EntitySet="plant" />
+      <End Role="parameter" EntitySet="parameter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_roletask_role" Association="Self.FK_roletask_role">
+      <End Role="security_role" EntitySet="security_role" />
+      <End Role="security_role_task" EntitySet="security_role_task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_roletask_task" Association="Self.FK_roletask_task">
+      <End Role="security_task" EntitySet="security_task" />
+      <End Role="security_role_task" EntitySet="security_role_task" />
+    </AssociationSet>
+    <AssociationSet Name="FK_securityarea_plant" Association="Self.FK_securityarea_plant">
+      <End Role="plant" EntitySet="plant" />
+      <End Role="security_area" EntitySet="security_area" />
+    </AssociationSet>
+    <AssociationSet Name="FK_securityrole_plant" Association="Self.FK_securityrole_plant">
+      <End Role="plant" EntitySet="plant" />
+      <End Role="security_role" EntitySet="security_role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_securityuser_plant" Association="Self.FK_securityuser_plant">
+      <End Role="plant" EntitySet="plant" />
+      <End Role="security_user" EntitySet="security_user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_area" Association="Self.FK_user_area">
+      <End Role="security_area" EntitySet="security_area" />
+      <End Role="security_user" EntitySet="security_user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userplants_plant" Association="Self.FK_userplants_plant">
+      <End Role="plant" EntitySet="plant" />
+      <End Role="security_user_plants" EntitySet="security_user_plants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userplants_user" Association="Self.FK_userplants_user">
+      <End Role="security_user" EntitySet="security_user" />
+      <End Role="security_user_plants" EntitySet="security_user_plants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userrole_role" Association="Self.FK_userrole_role">
+      <End Role="security_role" EntitySet="security_role" />
+      <End Role="security_user_role" EntitySet="security_user_role" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userrole_user" Association="Self.FK_userrole_user">
+      <End Role="security_user" EntitySet="security_user" />
+      <End Role="security_user_role" EntitySet="security_user_role" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

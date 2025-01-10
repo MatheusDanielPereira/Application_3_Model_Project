@@ -1,0 +1,142 @@
+﻿@using YourProjectName_Resources
+@using YourProjectName_ViewModels
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Metso:Outotec</title>
+    <link rel="icon" href="@Url.Content("~/Content/favicon.ico")" />
+    @Scripts.Render("~/bundles/Js")
+    @Scripts.Render("~/bundles/MetsoJs")
+    @Styles.Render("~/Content/Css")
+    @Styles.Render("~/Content/MetsoCss")
+    <style>
+        .vertical-container {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+        }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+            .dropdown-submenu a::after {
+                transform: rotate(-90deg);
+                position: absolute;
+                right: 6px;
+                top: .8em;
+            }
+
+            .dropdown-submenu .dropdown-menu {
+                top: 0;
+                left: 100%;
+                margin-left: .1rem;
+                margin-right: .1rem;
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-custom justify-content-between">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+            <span style="color:white;">
+                <i class="fas fa-bars"></i>
+            </span>
+        </button>
+        <div class="navbar-header justify-content-md-start vertical-container">
+            <div style="display: inline-block;">
+                @Html.ActionLink(Resources.YourProjectName, "MainPage", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div style="display: inline-block;">
+                @if ((Session["UserMultiplePlant"] != null) && ((bool)Session["UserMultiplePlant"]))
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="@Html.Raw(Url.Action("GetImage", "Plant", new { PlantID = @Session["UserPlant"], Type = 0 }))" width="24" height="24" />
+                                @Session["UserPlant"] <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @foreach (PlantViewModel plant in ((List<PlantViewModel>)Session["UserAvailablePlants"]))
+                                {
+                                    <a class="dropdown-item" href="~/Home/SetPlant?ID=@plant.plant_id">
+                                        <img src="@Html.Raw(Url.Action("GetImage", "Plant", new { PlantID = @plant.plant_id, Type = 0 }))" />
+                                        @plant.plant_description (@plant.plant_id)
+                                    </a>
+                                }
+                            </div>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    if ((Session["UserPlant"] != null) && (!Session["UserPlant"].ToString().Trim().IsEmpty()))
+                    {
+                        <img src="@Html.Raw(Url.Action("GetImage", "Plant", new { PlantID = @Session["UserPlant"], Type = 0 }))" width="24" height="24" />
+                    }
+                    <span class="navbar-brand">@Session["UserPlant"]</span>
+                }
+            </div>
+        </div>
+
+        <div class="navbar-header vertical-container">
+            <div style="display: inline-block;">
+                @{Html.RenderAction("Menu", "Home");}
+            </div>
+
+            <div style="display: inline-block;">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-globe-americas"></i><span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="~/Home/SetCulture?culture=pt-BR">Português (PT-BR)</a>
+                            <a class="dropdown-item" href="~/Home/SetCulture?culture=en">English (EN)</a>
+                            @*<div class="dropdown-divider"></div>*@
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div style="display: inline-block;">
+                <div style="align-content:center; text-align:center;">
+                    <img src="~/Content/Images/logo-metso-white-hq.png" alt="Metso" height="26" />
+                    <br />
+                    <span style="color: white;font-size:small;">© @DateTime.Now.Year</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $('.metso-home > .jumbotron').addClass('fadeInUp').addClass('animated');
+    });
+
+    $('.dropdown-menu a.dropdown-toggle').on('click', function (e) {
+        if (!$(this).next().hasClass('show')) {
+            $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+        }
+        var $subMenu = $(this).next(".dropdown-menu");
+        $subMenu.toggleClass('show');
+
+
+        $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function (e) {
+            $('.dropdown-submenu .show').removeClass("show");
+        });
+
+
+        return false;
+    });
+</script>

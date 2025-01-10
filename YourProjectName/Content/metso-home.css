@@ -1,0 +1,387 @@
+﻿.btnChartHelp {
+    position: absolute;
+    margin-top: 10px;
+    margin-right: 26px;
+    right: 10px;
+    z-index: 100;
+}
+
+.metso-home {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background: #ffffff;
+}
+
+    .metso-home > .jumbotron {
+        border-radius: 0 !important;
+        padding: 0 !important;
+        background: #f5f5f5;
+        border-bottom: 0px #eeeeee solid;
+        margin: 0;
+        background: #000064;
+        background: -webkit-linear-gradient(to bottom, #5b5b5b, #ffffff);
+        background: linear-gradient(to bottom, #5b5b5b, #ffffff);
+    }
+
+        .metso-home > .jumbotron .page-header {
+            border-bottom: none;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+            .metso-home > .jumbotron .page-header h1 {
+                font-size: 32px;
+                padding: 0;
+                margin: 0;
+                /*color: rgb(224, 83, 20);*/
+                color: #000000;
+            }
+
+            .metso-home > .jumbotron .page-header small {
+                margin-left: 20px;
+            }
+
+    .metso-home > .navbar {
+        position: relative;
+        border: none;
+        border-radius: 0;
+        background: #ffffff;
+        border-bottom: 1px #eeeeee solid;
+    }
+
+        .metso-home > .navbar p {
+            height: 50px;
+            line-height: 50px;
+            margin: 0;
+            font-weight: bold;
+            padding: 0 20px;
+        }
+
+    .metso-home .metso-charts {
+        min-height: 320px;
+        border: 1px #eeeeee solid;
+        padding: 20px;
+        box-sizing: border-box;
+        margin-bottom: 30px;
+    }
+
+    .metso-home .metso-importboxes {
+        min-height: 250px;
+        border: 1px #eeeeee solid;
+        padding: 20px;
+        box-sizing: border-box;
+        margin-bottom: 30px;
+    }
+    .metso-home > .navbar label {
+        position: relative;
+        height: 34px;
+        line-height: 34px;
+        font-size: 20px;
+        padding: 0 10px;
+        text-shadow: none;
+    }
+
+    .metso-home .metso-dash3 .page-header {
+        margin: 0;
+        padding: 0 20px;
+    }
+
+        .metso-home .metso-dash3 .page-header h1 {
+            font-size: 24px;
+        }
+
+    .metso-home .metso-dash3 .row {
+        border: 1px #eeeeee solid;
+        margin-bottom: 30px;
+    }
+
+    .metso-home .metso-dash3 .metso-charts {
+        border: none;
+    }
+
+    .metso-home .metso-dash4 .row {
+        padding: 0;
+    }
+
+        .metso-home .metso-dash4 .row:first-child > div:first-child {
+            border: 1px #eeeeee solid;
+        }
+
+    .metso-home .metso-dash4 .metso-dash4-comments {
+        border: 1px #eeeeee solid;
+    }
+
+        .metso-home .metso-dash4 .metso-dash4-comments p {
+            padding: 5px 20px;
+        }
+
+    .metso-home .metso-dash4 .metso-dash4-draw {
+        padding: 20px 10px;
+        text-align: center;
+    }
+
+    .metso-home .metso-dash10 .row {
+        padding: 0;
+        margin-bottom: 25px;
+    }
+
+        .metso-home .metso-dash10 .row:first-child > div {
+            padding: 0 40px;
+        }
+
+    .metso-home .metso-dash-button {
+        text-align: center;
+        border-bottom: 1px #eeeeee solid;
+    }
+
+        .metso-home .metso-dash-button button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 10px;
+        }
+
+    .metso-home .metso-grid-actions {
+        position: relative;
+        width: 100%;
+        margin-top: -30px;
+        text-align: right;
+        margin-bottom: 40px;
+    }
+
+        .metso-home .metso-grid-actions button {
+            font-size: 16px;
+        }
+
+            .metso-home .metso-grid-actions button i {
+                padding-right: 10px;
+            }
+
+.metso-grid-area {
+    margin: 40px 0 40px 0;
+}
+
+.metso-grid-flag-title {
+    position: relative;
+    display: inline-block !important;
+    overflow: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+}
+
+.metso-grid-flag {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    background: #cccccc;
+    border-radius: 100%;
+    margin-top: 2px;
+    margin-right: 5px;
+    float: left;
+}
+
+.metso-grid-flag-success {
+    background: #98c000;
+}
+
+.metso-grid-flag-warning {
+    background: #fc9000;
+}
+
+.metso-grid-flag-error {
+    background: #e05314;
+}
+
+.metso-grid-flag-above {
+    background: #1437e0;
+}
+
+.metso-grid-flag-obsolete {
+    background: #ffffff;
+}
+
+.metso-grid-area {
+    margin-bottom: 40px;
+}
+
+@media (max-width: 767px) {
+    .metso-home > .jumbotron .page-header {
+        padding: 30px 0 10px 0;
+    }
+
+    .metso-home .metso-dash3 .row {
+        border: none;
+        margin-bottom: 30px;
+    }
+
+    .metso-grid-area {
+        margin: 50px 0 40px 0;
+    }
+
+    .metso-grid-flag-title {
+        display: none !important;
+    }
+
+    .metso-home > .jumbotron .page-header small {
+        margin-left: auto;
+    }
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+/*.btn {
+    background-image: linear-gradient(to bottom, #cccccc, #464646);
+    border-radius: 0.6rem;
+    color: #fff;
+    border: none;
+}
+
+.btn-default {
+    background-image: linear-gradient(to bottom, #cccccc, #464646);
+    border-radius: 0.6rem;
+    color: #fff;
+    border: none;
+}
+
+.btn-info {
+    background-image: linear-gradient(to bottom, #78ddfb, #0101f2);
+    border-radius: 0.6rem;
+    color: #fff;
+    border: none;
+}
+
+.btn-primary {
+    background-image: linear-gradient(to bottom, #78ddfb, #0101f2);
+    border-radius: 0.6rem;
+    color: #fff;
+    border: none;
+}
+
+.btn-success {
+    background-image: linear-gradient(to bottom, #87ff79, #085213);
+    border-radius: 0.6rem;
+    color: #fff;
+    border: none;
+}
+
+.btn-warning {
+    background-image: linear-gradient(to bottom, #fed4a1, #cb5303);
+    border-radius: 0.6rem;
+    color: #fff;
+    border: none;
+}
+
+.btn-danger {
+    background-image: linear-gradient(to bottom, #febbbb, #f20101);
+    border-radius: 0.6rem;
+    color: #fff;
+    border: none;
+}*/
+
+.grid-font {
+    font-size: x-small;
+}
+
+/*Tabs configuration*/
+a:hover, a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+.tab .nav-tabs {
+    border: none;
+    border-bottom: 2px solid #079fc9;
+    margin: 0;
+}
+
+    .tab .nav-tabs li a {
+        padding: 10px 20px;
+        margin: 0 10px -1px 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: #293241;
+        /*text-transform: uppercase;*/
+        border: 2px solid #e6e5e1;
+        border-bottom: none;
+        border-radius: 5px 5px 0 0;
+        z-index: 1;
+        position: relative;
+        transition: all 0.3s ease 0s;
+    }
+
+        .tab .nav-tabs li a:hover,
+        .tab .nav-tabs li.active a {
+            background: #fff;
+            color: #079fc9;
+            border: 2px solid #079fc9;
+            border-bottom-color: transparent;
+        }
+
+        .tab .nav-tabs li a:before {
+            content: "";
+            display: block;
+            height: 2px;
+            background: #fff;
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out 0s;
+        }
+
+        .tab .nav-tabs li.active a:before,
+        .tab .nav-tabs li a:hover:before {
+            transform: scaleX(1);
+        }
+
+.tab .tab-content {
+    padding: 10px;
+    font-size: 17px;
+    color: #6f6f6f;
+    line-height: 30px;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+@media only screen and (max-width: 479px) {
+    .tab .nav-tabs {
+        border: none;
+    }
+
+        .tab .nav-tabs li {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+            .tab .nav-tabs li a {
+                margin: 0;
+                border-bottom: 2px solid transparent;
+            }
+
+                .tab .nav-tabs li a:before {
+                    content: "";
+                    width: 100%;
+                    height: 2px;
+                    background: #079fc9;
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                }
+}
+
+/*Tabs configuration - END*/

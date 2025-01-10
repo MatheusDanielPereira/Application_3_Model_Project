@@ -1,0 +1,117 @@
+﻿@model YourProjectName_ViewModels.PlantViewModel
+@using YourProjectName_Resources
+
+@{
+    ViewBag.Title = @Resources.Plant;
+}
+
+@Styles.Render("~/Content/home")
+
+<div class="metso-home">
+    <div class="jumbotron">
+        <div class="container">
+            <div class="page-header">
+                <h1>
+                    @ViewBag.Title
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("EditForm",
+                        "Plant",
+                        FormMethod.Post,
+                        new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.plant_id, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.plant_id, new { htmlAttributes = new { @class = "form-control", style = "width: 300px" } })
+                                @Html.ValidationMessageFor(model => model.plant_id)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.plant_description, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.plant_description, new { htmlAttributes = new { @class = "form-control", style = "width: 300px" } })
+                                @Html.ValidationMessageFor(model => model.plant_description)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.plant_time_zone, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.plant_time_zone, new { htmlAttributes = new { @class = "form-control", style = "width: 300px" } })
+                                @Html.ValidationMessageFor(model => model.plant_time_zone)
+                                <a href="https://support.microsoft.com/en-us/help/973627/microsoft-time-zone-index-values" target="_blank">@Resources.TimeZoneAllOptions</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.plant_flag_load, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.plant_flag_load, new { type = "file", accept = "image/jpeg", onchange = "showFlag(this)" })
+                                <div id="flagpicture"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn btn-success btn-sm btn-round"><i class="fas fa-check"></i> @Resources.Save</button>
+                                <button type="button" class="btn btn-danger btn-sm btn-round" onclick="javascript: document.location = '@Url.Action("Index", "Plant")';"><i class="fas fa-ban"></i> @Resources.Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }
+                <br />
+
+                <div class="col-md-12">
+                    <span>&nbsp;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/JavaScript">
+    $(document).ready(function () {
+        $('#tbGrid').footable();
+
+        var flagurl = "@Html.Raw(Url.Action("GetImage", "Plant", new { PlantID = "plant_id", Type = 0 }))";
+        flagurl = flagurl.replace("plant_id", "@Model.plant_id");
+        $("#flagpicture").html("<img id=\"imgFlag\" src=\"" + flagurl+"\"/>");
+    });
+
+    function showFlag(fileInput) {
+        var files = fileInput.files;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var imageType = /image.*/;
+            if (!file.type.match(imageType)) {
+                continue;
+            }
+            var img = document.getElementById("imgFlag");
+            img.file = file;
+            var reader = new FileReader();
+            reader.onload = (function(aImg) {
+                return function(e) {
+                    aImg.src = e.target.result;
+                };
+            })(img);
+            reader.readAsDataURL(file);
+        }
+    }
+</script>

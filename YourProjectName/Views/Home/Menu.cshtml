@@ -1,0 +1,107 @@
+﻿@using YourProjectName_Resources;
+
+@using (Html.BeginForm("LogOff", "Home", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+{
+    <div class="collapse navbar-collapse justify-content-md-end" id="navbarsExample08">
+        <ul class="nav navbar-nav navbar-right">
+            @if (Request.IsAuthenticated)
+            {
+                if ((HttpContext.Current.Session["Permissions"] != null) && (((List<string>)HttpContext.Current.Session["Permissions"]).Contains("OTHER_MENU")))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Resources.OtherMenuTitle <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @if ((HttpContext.Current.Session["Permissions"] != null) && (((List<string>)HttpContext.Current.Session["Permissions"]).Contains("OTHER_MENU_OPT1")))
+                            {
+                                @Html.ActionLink(Resources.OtherMenuOption1, "OtherMenuOption1", "Home", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                            }
+
+                            @if ((HttpContext.Current.Session["Permissions"] != null) && (((List<string>)HttpContext.Current.Session["Permissions"]).Contains("OTHER_MENU_OPT2")))
+                            {
+                                @Html.ActionLink(Resources.OtherMenuOption2, "OtherMenuOption2", "Home", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                            }
+
+                            @if ((HttpContext.Current.Session["Permissions"] != null) && (((List<string>)HttpContext.Current.Session["Permissions"]).Contains("OTHER_MENU_OPT3")))
+                            {
+                                @Html.ActionLink(Resources.OtherMenuOption3, "OtherMenuOption3", "Home", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                            }
+                        </div>
+                    </li>
+                }
+
+                if ((HttpContext.Current.Session["Permissions"] != null) && (((List<string>)HttpContext.Current.Session["Permissions"]).Contains("ADM_MENU")))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Resources.Administration
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            @if ((HttpContext.Current.Session["Permissions"] != null) && (((List<string>)HttpContext.Current.Session["Permissions"]).Contains("ADM_CADPARAM")))
+                            {
+                                <li>
+                                    @Html.ActionLink(Resources.SystemParameters, "Index", "Parameter", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                                </li>
+                            }
+                            <li class="dropdown-submenu">
+                                <a class="dropdown-item dropdown-toggle" href="#">@Resources.Database</a>
+                                <ul class="dropdown-menu">
+                                    @if ((HttpContext.Current.Session["Permissions"] != null) && (((List<string>)HttpContext.Current.Session["Permissions"]).Contains("ADM_CADPLANT")))
+                                    {
+                                        <li>
+                                            @Html.ActionLink(Resources.Plant, "Index", "Plant", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                            @if ((HttpContext.Current.Session["Permissions"] != null) && (((List<string>)HttpContext.Current.Session["Permissions"]).Contains("ADM_SEG_MENU")))
+                            {
+                                <li class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">@Resources.Security</a>
+                                    <ul class="dropdown-menu">
+                                        @if ((HttpContext.Current.Session["Permissions"] != null) && (((List<string>)HttpContext.Current.Session["Permissions"]).Contains("ADM_SEG_CADAREAUSUARIO")))
+                                        {
+                                            <li>
+                                                @Html.ActionLink(Resources.SecurityArea, "AreaIndex", "Security", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                                            </li>
+                                        }
+                                        @if ((HttpContext.Current.Session["Permissions"] != null) && (((List<string>)HttpContext.Current.Session["Permissions"]).Contains("ADM_SEG_CADUSUARIO")))
+                                        {
+                                            <li>
+                                                @Html.ActionLink(Resources.User, "UserIndex", "Security", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                                            </li>
+                                        }
+                                        @if ((HttpContext.Current.Session["Permissions"] != null) && (((List<string>)HttpContext.Current.Session["Permissions"]).Contains("ADM_SEG_CADPERFIL")))
+                                        {
+                                            <li>
+                                                @Html.ActionLink(Resources.SecurityRole, "RoleIndex", "Security", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="glyphicon glyphicon-user"></i>
+                        @if (User.Identity.Name.Contains('@'))
+                        {
+                            @Html.Encode(User.Identity.Name.Substring(0, User.Identity.Name.IndexOf('@')))
+                        }
+                        else
+                        {
+                            @Html.Encode(User.Identity.Name)
+                        }
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">@Resources.Logoff</a>
+                    </ul>
+                </li>
+            }
+        </ul>
+</div>
+}
